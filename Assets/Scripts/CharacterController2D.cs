@@ -18,6 +18,11 @@ public class CharacterController2D : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
+	//private float jumpF = 800f;
+
+	float knockback = 10;
+	public int knockbackDirectionX;
+	public int knockbackDirectionY;
 
 	[Header("Events")]
 	[Space]
@@ -40,6 +45,7 @@ public class CharacterController2D : MonoBehaviour
 		if (OnCrouchEvent == null)
 			OnCrouchEvent = new BoolEvent();
 	}
+
 
 	private void FixedUpdate()
 	{
@@ -131,6 +137,7 @@ public class CharacterController2D : MonoBehaviour
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
+
 	}
 
 
@@ -144,4 +151,15 @@ public class CharacterController2D : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+
+	public void Knockback()
+	{
+		m_Rigidbody2D.velocity = new Vector2(knockback * 3 * knockbackDirectionX, knockback * knockbackDirectionY);
+	}
+
+	public void StompJump()
+    {
+		m_Rigidbody2D.velocity = new Vector2(0f, 10f);
+    }
+
 }

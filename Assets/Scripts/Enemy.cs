@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
         {
             Die();
         }
+        Debug.Log(health);
     }
 
     void Die()

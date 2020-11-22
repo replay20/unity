@@ -63,9 +63,29 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy" && timer >= timeBetweenAttacks)
         {
+            
             Debug.Log(playerLife-=1);
             timer = 0f;
+
+            //zamienic na switch case
+            if (collision.transform.position.x > transform.position.x)
+                controller.knockbackDirectionX = -1;
+            else if (collision.transform.position.x == transform.position.x)
+                controller.knockbackDirectionX = 0;
+            else if (collision.transform.position.x < transform.position.x)
+                controller.knockbackDirectionX = 1;
+
+            if (collision.transform.position.y > transform.position.y)
+                controller.knockbackDirectionY = -1;
+            else if (collision.transform.position.y == transform.position.y)
+                controller.knockbackDirectionY = 0;
+            else if (collision.transform.position.y < transform.position.y)
+                controller.knockbackDirectionY = 1;
+            controller.Knockback();
+            //Debug.Log(controller.knockbackDirectionX);
+            //Debug.Log(controller.knockbackDirectionY);
         }
+
         if (playerLife <= 0)
             Die();
     }
