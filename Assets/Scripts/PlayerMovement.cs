@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject deathEffect;
     float timeBetweenAttacks = 0.5f;
     float timer;
+    int damage = 1;
 
     // Update is called once per frame
     void Update()
@@ -63,8 +64,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy" && timer >= timeBetweenAttacks)
         {
-            
-            Debug.Log(playerLife-=1);
+
+            TakeDamage(damage);
             timer = 0f;
 
             //zamienic na switch case
@@ -86,9 +87,17 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log(controller.knockbackDirectionY);
         }
 
+        
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Debug.Log(playerLife -= damage);
         if (playerLife <= 0)
             Die();
+
     }
+
     void Die()
     {
         Instantiate(deathEffect, transform.position, Quaternion.identity);
