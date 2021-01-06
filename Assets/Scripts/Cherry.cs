@@ -11,7 +11,7 @@ public class Cherry : MonoBehaviour
 
         if (col.gameObject.tag == "Player")
         {
-            Debug.Log(player.playerLife += 1);
+            player.playerLife += 1;
             Destroy(gameObject);
         }
     }

@@ -12,7 +12,7 @@ public class Spikes : MonoBehaviour
         {
             PlayerMovement player = col.GetComponent<PlayerMovement>();
             if (player != null)
-                player.TakeDamage(damage);
+                player.TakeDamage(player.playerLife);
         }
         else return;
     }

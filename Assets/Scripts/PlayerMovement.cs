@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     bool jump = false;
     bool crouch = false;
     public int playerLife = 5;
+    public int score = 0;
     public GameObject deathEffect;
     float timeBetweenAttacks = 0.5f;
     float timer;
@@ -92,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Debug.Log(playerLife -= damage);
+        playerLife -= damage;
         if (playerLife <= 0)
             Die();
 
@@ -102,6 +103,12 @@ public class PlayerMovement : MonoBehaviour
     {
         Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
+        FindObjectOfType<GameManager>().GameOver();
+    }
+
+    public void UpdateScore(int s)
+    {
+        score += s;
     }
 
 }

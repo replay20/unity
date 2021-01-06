@@ -5,7 +5,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int health = 3;
+    public int score=50;
     public GameObject deathEffect;
+    public PlayerMovement player;
     /*public Transform damagePoint;
     public float damageRadius = 0.5f;
     public LayerMask playerLayers;*/
@@ -27,6 +29,7 @@ public class Enemy : MonoBehaviour
     {
         Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
+        player.UpdateScore(score);
     }
 
 }
